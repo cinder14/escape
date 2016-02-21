@@ -13,7 +13,6 @@ namespace Escape
         {
             this.TrackPrefix = trackPrefix;
         }
-
         ~BaseClass()
         {
             this.Dispose(false);
@@ -56,6 +55,5 @@ namespace Escape
         }
 
         #endregion
-
     }
 }

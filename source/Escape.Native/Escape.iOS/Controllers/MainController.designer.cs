@@ -13,16 +13,13 @@ namespace Escape.iOS
 	partial class MainController
 	{
 		[Outlet]
-		UIKit.UIButton btnHello { get; set; }
-
-		[Action ("btnHello_Click:")]
-		partial void btnHello_Click (Foundation.NSObject sender);
+		UIKit.UITableView tblData { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (btnHello != null) {
-				btnHello.Dispose ();
-				btnHello = null;
+			if (tblData != null) {
+				tblData.Dispose ();
+				tblData = null;
 			}
 		}
 	}

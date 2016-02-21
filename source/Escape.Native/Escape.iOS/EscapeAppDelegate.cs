@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using UIKit;
+using System;
 
 namespace Escape.iOS
 {
@@ -34,19 +35,60 @@ namespace Escape.iOS
 
             Container.EscapeApp.Initialize();
 
-
-
             this.InitializeEnvironment();
 
             this.MainStoryboard = UIStoryboard.FromName("MainStoryboard", null);
             this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            this.LaunchMain();
+            if (launchOptions != null && launchOptions.ContainsKey(UIApplication.LaunchOptionsLocalNotificationKey))
+            {
+                UILocalNotification localNotification = launchOptions[UIApplication.LaunchOptionsLocalNotificationKey] as UILocalNotification;
+                this.LaunchNotification(localNotification, true);
+            }
+            else
+            {
+                this.LaunchMain();
+            }
+
 
             this.Window.MakeKeyAndVisible();
 
             return true;
 		}
+        public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+        {
+            this.LaunchNotification(notification, false);
+        }
+
+        public bool LaunchNotification(UILocalNotification notification, bool isMainLauncher)
+        {
+            bool didLaunch = false;
+            NSString key = new NSString("rescue_id");
+            if (notification != null && notification.UserInfo != null && notification.UserInfo.ContainsKey(key)) //TODO:Should: Remove inline constant
+            {
+                string rescueID = notification.UserInfo[key].ToString();
+                Rescue rescue = Container.EscapeApp.RescueGetById(new Guid(rescueID));
+                if (rescue != null)
+                {
+                    NotificationController notificationController = this.MainStoryboard.InstantiateViewController(NotificationController.IDENTIFIER) as NotificationController;
+                    notificationController.Rescue = rescue;
+
+                    // start with a new nav
+                    UINavigationController navController = new UINavigationController(notificationController);
+                    navController.NavigationBarHidden = true;
+                    this.ChangeRootViewController(navController, UIViewAnimationOptions.TransitionNone);
+                    didLaunch = true;
+                }
+            }
+
+
+            if (!didLaunch && isMainLauncher)
+            {
+                this.LaunchMain();
+            }
+
+            return didLaunch;
+        }
 
 		public override void OnResignActivation (UIApplication application)
 		{
@@ -121,7 +163,7 @@ namespace Escape.iOS
         {
             CoreUtility.ExecuteMethod("InitializeEnvironment", delegate()
             {
-                // nothing yet.
+                // nothing yet
             });
         }
 

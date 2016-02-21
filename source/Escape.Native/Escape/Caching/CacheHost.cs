@@ -124,7 +124,7 @@ namespace Escape
                 string path = GenerateDataCacheLocation("ignore");
                 lock (_persistLock)
                 {
-                    if(fileStore.FolderExists(Path.GetDirectoryName(path)))
+                    if (fileStore.FolderExists(Path.GetDirectoryName(path)))
                     {
                         fileStore.DeleteFolder(Path.GetDirectoryName(path), true);
                     }
@@ -231,7 +231,6 @@ namespace Escape
                 this.LogError(ex, "PersistentDataSet");
                 return false;
             }
-
         }
         public virtual T PersistentDataGet<T>(bool secured, string fileName)
         {

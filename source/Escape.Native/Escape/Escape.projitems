@@ -23,10 +23,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)CoreAssumptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\IViewPlatform.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\_CoreExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Config\I18NToken.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base\IViewModelView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DashboardViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Rescue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreateViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ICreateView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Caching\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\" />
     <Folder Include="$(MSBuildThisFileDirectory)App\" />
+    <Folder Include="$(MSBuildThisFileDirectory)App\Config\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Base\" />
   </ItemGroup>
 </Project>

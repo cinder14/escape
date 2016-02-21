@@ -7,22 +7,84 @@ using UIKit;
 
 namespace Escape.iOS
 {
-	public partial class MainController : UIViewController
+	public partial class MainController : UIViewController, IViewModelView
 	{
+        #region Constructor
+
 		public MainController (IntPtr handle) : base (handle)
 		{
 		}
 
+        #endregion
+
+        #region Properties
+
         public const string IDENTIFIER = "MainController";
 
-        private int _count = 1;
+        public DashboardViewModel ViewModel { get; set; }
 
-        partial void btnHello_Click(NSObject sender)
+        #endregion
+
+        #region Overrides
+
+        public override void ViewDidLoad()
         {
-            _count++;
+            base.ViewDidLoad();
 
-            string title = string.Format("{0} clicks!", _count);
-            btnHello.SetTitle(title, UIControlState.Normal);
+            this.ViewModel = new DashboardViewModel(this);
+
+            tblData.TableFooterView = new UIView();
+            tblData.Source = new DashboardTableViewSource(this);
+
+            this.ViewModel.Start();
         }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            this.NavigationController.NavigationBarHidden = true;
+
+            tblData.ReloadData();
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+
+        #endregion
+
+        #region Nested Classes
+
+        public class DashboardTableViewSource : UITableViewSource
+        {
+            public DashboardTableViewSource(MainController controller)
+            {
+                this.Controller = controller;
+            }
+
+            public MainController Controller { get; set; }
+
+            public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+            {
+                Rescue data = this.Controller.ViewModel.Rescues[indexPath.Row];
+                UITableViewCell cell = tableView.DequeueReusableCell("CellRescue");
+                cell.TextLabel.Text = data.title;
+                return cell;
+            }
+            public override nint RowsInSection(UITableView tableView, nint section)
+            {
+                return this.Controller.ViewModel.Rescues.Count;
+            }
+
+            public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+            {
+                tableView.DeselectRow(indexPath, true);
+            }
+
+        }
+
+        #endregion
 	}
 }

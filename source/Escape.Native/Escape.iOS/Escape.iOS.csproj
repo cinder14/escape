@@ -118,6 +118,15 @@
     <Compile Include="Controllers\MainController.designer.cs">
       <DependentUpon>MainController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CreateController.cs" />
+    <Compile Include="Controllers\CreateController.designer.cs">
+      <DependentUpon>CreateController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\_IOSExtensions.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\NotificationController.designer.cs">
+      <DependentUpon>NotificationController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\Escape\Escape.projitems" Label="Shared" Condition="Exists('..\Escape\Escape.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
