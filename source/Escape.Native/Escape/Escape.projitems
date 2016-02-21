@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a7858bbd-3182-4c4d-926d-c6aef0f9d5a2</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Escape</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Caching\ICacheHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Caching\CacheHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\BaseClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Container.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\CoreTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ITrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\IEscapeApp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\EscapeApp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\CoreUtility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Caching\ICacheFileStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Caching\BaseFileStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CoreAssumptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\IViewPlatform.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\_CoreExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Caching\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\" />
+    <Folder Include="$(MSBuildThisFileDirectory)App\" />
+  </ItemGroup>
+</Project>
