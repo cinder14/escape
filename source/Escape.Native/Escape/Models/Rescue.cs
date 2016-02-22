@@ -12,6 +12,11 @@ namespace Escape
         public DateTime stamp_utc { get; set; }
         public string title { get; set; }
         public string body { get; set; }
+
+        public override string ToString()
+        {
+            return title;
+        }
     }
 }
 

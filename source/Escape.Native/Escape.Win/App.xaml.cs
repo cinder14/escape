@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Escape.Win.Pages;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -86,6 +87,7 @@ namespace Escape.Win
 
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+            
             // Ensure the current window is active
             Window.Current.Activate();
         }
@@ -99,7 +101,11 @@ namespace Escape.Win
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
-
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            //TODO: Not working with current emulator. pre-release :)
+            base.OnActivated(args);
+        }
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved
         /// without knowing whether the application will be terminated or resumed with the contents

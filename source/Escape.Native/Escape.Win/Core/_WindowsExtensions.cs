@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Escape.Win
 {
@@ -47,13 +48,27 @@ namespace Escape.Win
         {
             return Window.Current.Content as Frame;
         }
-        public static async Task GoBackAsync(this Frame frame)
-        {
-            if (frame != null)
-            {
-                await frame.Dispatcher.RunAsync(global::Windows.UI.Core.CoreDispatcherPriority.Normal, () => frame.GoBack());
-            }
-        }
 
+        public static async Task NavigateAsync<T>(this Frame frame, bool clearHistory = false, Action<NavigationEventArgs> afterNavigated = null)
+        {
+            await frame.Dispatcher.RunAsync(global::Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                NavigatedEventHandler navigatedHandler = null;
+                navigatedHandler = new NavigatedEventHandler(delegate (object sender, NavigationEventArgs args)
+                {
+                    frame.Navigated -= navigatedHandler;
+                    if (clearHistory)
+                    {
+                        frame.BackStack.Clear();
+                    }
+                    if (afterNavigated != null)
+                    {
+                        afterNavigated(args);
+                    }
+                });
+                frame.Navigated += navigatedHandler;
+                frame.Navigate(typeof(T));
+            });
+        }
     }
 }

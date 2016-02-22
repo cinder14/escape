@@ -20,7 +20,6 @@ namespace Escape.Droid
     public class CreateActivity : Activity, ICreateView
     {
         #region Properties
-
         public CreateViewModel ViewModel { get; set; }
 
         #endregion
@@ -34,6 +33,8 @@ namespace Escape.Droid
             this.SetContentView(Resource.Layout.Create);
 
             this.ViewModel = new CreateViewModel(this);
+
+            this.ViewModel.Start();
         }
 
         #endregion
