@@ -48,6 +48,13 @@
     <Reference Include="UniversalImageLoader">
       <HintPath>..\Components\UniversalImageLoader-1.9.4.1\lib\android\UniversalImageLoader.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\MainActivity.cs" />
@@ -57,6 +64,9 @@
     <Compile Include="Core\Container.cs" />
     <Compile Include="Core\Caching\AndroidFileStore.cs" />
     <Compile Include="Core\AndroidViewPlatform.cs" />
+    <Compile Include="Activities\CreateActivity.cs" />
+    <Compile Include="Activities\AlarmReceiver.cs" />
+    <Compile Include="Activities\NotificationActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -67,6 +77,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\layout\Create.axml" />
+    <AndroidResource Include="Resources\layout\Notification.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\launch.png" />
@@ -90,6 +102,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="UniversalImageLoader">
       <Version>1.9.4.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="xamandroidsupportv7appcompat">
+      <Version>22.2.0.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

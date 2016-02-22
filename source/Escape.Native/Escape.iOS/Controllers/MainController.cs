@@ -50,11 +50,6 @@ namespace Escape.iOS
 
         #endregion
 
-        #region Event Handlers
-
-
-        #endregion
-
         #region Nested Classes
 
         public class DashboardTableViewSource : UITableViewSource
